@@ -1,0 +1,9 @@
+$serviceList = Get-Service
+foreach ($service in $serviceList){
+  $serviceName = $service.Name;
+  $wmiservice = Get-WmiObject win32_service | Where-Object {$_.Name -eq $serviceName};
+  $servicePath = $wmiservice.PathName;
+  Write-Host $serviceName
+  Write-Host $servicePath
+  Write-Host --------------------------------\n
+}
